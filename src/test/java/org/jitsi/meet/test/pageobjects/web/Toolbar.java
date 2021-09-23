@@ -87,11 +87,6 @@ public class Toolbar
     public Toolbar(WebParticipant participant)
     {
         this.participant = Objects.requireNonNull(participant, "participant");
-
-        if (MeetUtils.areReactionsEnabled(this.participant.getDriver()))
-        {
-            reactionsEnabled = true;
-        }
     }
 
     /**
@@ -103,24 +98,10 @@ public class Toolbar
     }
 
     /**
-     * Clicks on the raise hand toolbar button and opens the reactions menu.
-     */
-    public String clickOpenReactionsMenuButton()
-    {
-        return clickButton(REACTIONS_MENU);
-    }
-
-
-    /**
      * Clicks on the raise/lower hand button that enables participants will to speak.
      */
     public String clickRaiseHandButton()
     {
-        if (areReactionsEnabled())
-        {
-            return clickOpenReactionsMenuButton();
-        }
-
         return clickButton(RAISE_HAND);
     }
 
@@ -524,14 +505,5 @@ public class Toolbar
         this.closeOverflowMenu();
 
         return count;
-    }
-
-    /**
-     * Whether reactions are enabled, that changes the raise hand button behaviour.
-     * @return <tt>true</tt> if reactions are enabled.
-     */
-    public boolean areReactionsEnabled()
-    {
-        return reactionsEnabled;
     }
 }
